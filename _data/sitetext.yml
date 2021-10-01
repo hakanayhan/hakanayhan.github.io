@@ -178,18 +178,18 @@ tr: &DEFAULT_TR
 
   services:
     title: "Hizmetlerimiz"
-    text: "Lorem ipsum"
+    text: ""
     section: services
     list:
-      - title: "E-Commerce"
-        desc: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima maxime quam architecto quo inventore harum ex magni, dicta impedit."
-        icon: fas fa-shopping-cart #find more at https://fontawesome.com/icons
-      - title: "Responsive Design"
-        desc: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima maxime quam architecto quo inventore harum ex magni, dicta impedit."
-        icon: fas fa-laptop
-      - title: "[Markdown](https://en.wikipedia.org/wiki/Markdown)"
-        desc: "Your description here, full **Markdown** support"
-        icon: fab fa-markdown
+      - title: "Yazılım"
+        desc: ""
+        icon: fas fa-laptop-code #find more at https://fontawesome.com/icons
+      - title: "Donanım"
+        desc: ""
+        icon: fas fa-shopping-cart
+      - title: "Teknik Servis"
+        desc: ""
+        icon: fas fa-cogs
 
   portfolio:
     title: "Portföy"
@@ -230,8 +230,8 @@ tr: &DEFAULT_TR
 
   about:
     title: "Hakkımızda"
-    text: "our story"
-    body: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut eaque, laboriosam veritatis, quos non quis ad perspiciatis, totam corporis ea, alias ut unde. **Markdown** supported."
+    text: ""
+    body: "**Aytek Teknoloji ve Ticaret Ltd. Şti.** yılların verdiği birikim ve tecrübeyi kurumsallaştırarak hizmete başlayan bir takımdır. "
     section: about
 
   clients:
@@ -291,18 +291,18 @@ tr: &DEFAULT_TR
 
   contact:
     title: "Bizimle İletişime Geç"
-    text: "Lorem ipsum or call 123456789"
+    text: "YEŞİLCE MAH. YUNUS EMRE CAD. NO: 8 İÇ KAPI NO: 1 KAĞITHANE/ İSTANBUL  info@aytekticaret.com"
     section: contact
-    name: "Name*"
-    name-validation: "Please enter your name."
+    name: "İsim*"
+    name-validation: "Lütfen isminizi giriniz."
     email: "Email*"
-    email-validation: "Please enter your email address."
-    phone: "Phone Number"
-    phone-validation: "Please enter your phone number."
-    message: "Message*"
-    message-validation: "Please enter a message."
+    email-validation: "Lütfen email adresinizi giriniz."
+    phone: "Telefon Numarası*"
+    phone-validation: "Lütfen telefon numaranızı giriniz."
+    message: "Mesaj*"
+    message-validation: "Lütfen bir mesaj giriniz"
     subject: "Contact Form Submission"
-    submit: "Send Message"
+    submit: "Gönder"
 
   footer:
     legal: "Privacy Policy"

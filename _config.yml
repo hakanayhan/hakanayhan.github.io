@@ -16,10 +16,10 @@ theme: jekyll-agency
 url    : "" # the base hostname & protocol for your site, e.g. http://example.com
 baseurl: "" # the subpath of your site, e.g. /blog
 
-title      : Aytek Teknoloji ve Ticaret Ltd.Şti.
+title      : Aytek Teknoloji ve Ticaret Ltd. Şti.
 email      : info@aytekticaret.com #this is also the email contact forms will go to
-description: "Site description"
-author     : Your Name
+description: "Aytek Teknoloji ve Ticaret Ltd. Şti."
+author     : Aytek Teknoloji ve Ticaret
 # logo:     #optional, defaults to site title
   # path: assets\img\clients\creative-market.jpg
   # height: 60 #height in px, defaults to 52px
