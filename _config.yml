@@ -17,7 +17,7 @@ url    : "" # the base hostname & protocol for your site, e.g. http://example.co
 baseurl: "" # the subpath of your site, e.g. /blog
 
 title      : Aytek Teknoloji ve Ticaret Ltd. Şti.
-email      : info@aytekticaret.com #this is also the email contact forms will go to
+email      : f/xeqvdabn #this is also the email contact forms will go to
 description: "Aytek Teknoloji ve Ticaret Ltd. Şti."
 author     : Aytek Teknoloji ve Ticaret
 # logo:     #optional, defaults to site title
