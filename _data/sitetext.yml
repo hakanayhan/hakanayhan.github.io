@@ -291,7 +291,7 @@ tr: &DEFAULT_TR
 
   contact:
     title: "Bizimle İletişime Geç"
-    text: "YEŞİLCE MAH. YUNUS EMRE CAD. NO: 8 İÇ KAPI NO: 1 KAĞITHANE/ İSTANBUL  info@aytekticaret.com"
+    text: "YEŞİLCE MAH. YUNUS EMRE CAD. NO: 8 İÇ KAPI NO: 1 KAĞITHANE/ İSTANBUL  contact@aytekticaret.com"
     section: contact
     name: "İsim*"
     name-validation: "Lütfen isminizi giriniz."
