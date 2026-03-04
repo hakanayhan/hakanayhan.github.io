@@ -1,29 +1,260 @@
-<html>
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Hit Rolls</title>
-    <style media="screen">
-      body { background: #ECEFF1; color: rgba(0,0,0,0.87); font-family: Roboto, Helvetica, Arial, sans-serif; margin: 0; padding: 0; }
-      #message { background: white; max-width: 360px; margin: 100px auto 16px; padding: 32px 24px; border-radius: 3px; }
-      #message h2 { color: #ffa100; font-weight: bold; font-size: 16px; margin: 0 0 8px; }
-      #message h1 { font-size: 22px; font-weight: 300; color: rgba(0,0,0,0.6); margin: 0 0 16px;}
-      #message p { line-height: 140%; margin: 16px 0 24px; font-size: 14px; }
-      #message a { display: block; text-align: center; background: #039be5; text-transform: uppercase; text-decoration: none; color: white; padding: 16px; border-radius: 4px; }
-      #message, #message a { box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24); }
-      #load { color: rgba(0,0,0,0.4); text-align: center; font-size: 13px; }
-      @media (max-width: 600px) {
-        body, #message { margin-top: 0; background: white; box-shadow: none; }
-        body { border-top: 16px solid #ffa100; }
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Rubyshift Games - Support & Contact">
+  <title>Support — Rubyshift Games</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=PT+Serif:ital,wght@0,400;0,700;1,400&display=swap"
+    rel="stylesheet">
+  <style>
+    *,
+    *::before,
+    *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --bg-primary: #0a0a0f;
+      --bg-card: #14141e;
+      --ruby: #8b1a1a;
+      --ruby-light: #b22222;
+      --ruby-glow: rgba(178, 34, 34, 0.35);
+      --text-primary: #e8e6e3;
+      --text-secondary: #9a9a9a;
+      --text-muted: #5a5a6a;
+      --card-border: rgba(139, 26, 26, 0.15);
+      --font-main: 'PT Serif', Georgia, 'Times New Roman', serif;
+    }
+
+    body {
+      font-family: var(--font-main);
+      background: var(--bg-primary);
+      color: var(--text-primary);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Ambient glow */
+    body::before {
+      content: '';
+      position: fixed;
+      top: -40%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 700px;
+      height: 700px;
+      background: radial-gradient(circle, var(--ruby-glow) 0%, transparent 70%);
+      pointer-events: none;
+      animation: pulse 6s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+
+      0%,
+      100% {
+        opacity: 0.3;
+        transform: translateX(-50%) scale(1);
       }
-    </style>
-  </head>
-  <body>
 
-    <div id="message">
-      <h1>E-mail:</h1>
-      <p>rubyshiftgames@gmail.com</p>
-    </div>
+      50% {
+        opacity: 0.6;
+        transform: translateX(-50%) scale(1.1);
+      }
+    }
 
-  </body>
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(24px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Back link */
+    .back-link {
+      position: fixed;
+      top: 1.5rem;
+      left: 1.5rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      color: var(--text-secondary);
+      text-decoration: none;
+      font-size: 0.95rem;
+      z-index: 10;
+      transition: color 0.2s;
+    }
+
+    .back-link:hover {
+      color: var(--ruby-light);
+    }
+
+    .back-link svg {
+      width: 18px;
+      height: 18px;
+    }
+
+    /* Card */
+    .support-card {
+      position: relative;
+      z-index: 1;
+      background: var(--bg-card);
+      border: 1px solid var(--card-border);
+      border-radius: 20px;
+      padding: 3rem 2.5rem;
+      max-width: 500px;
+      width: 100%;
+      text-align: center;
+      animation: fadeInUp 0.8s ease-out;
+    }
+
+    .support-card h1 {
+      font-size: 1.8rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+      color: var(--ruby-light);
+    }
+
+    .support-card .subtitle {
+      color: var(--text-secondary);
+      font-size: 1rem;
+      margin-bottom: 2.5rem;
+      line-height: 1.6;
+    }
+
+    /* Contact items */
+    .contact-item {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding: 1rem 1.2rem;
+      border: 1px solid var(--card-border);
+      border-radius: 12px;
+      margin-bottom: 1rem;
+      text-decoration: none;
+      color: var(--text-primary);
+      background: rgba(255, 255, 255, 0.02);
+      transition: all 0.3s ease;
+    }
+
+    .contact-item:hover {
+      border-color: rgba(178, 34, 34, 0.4);
+      background: rgba(178, 34, 34, 0.08);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(178, 34, 34, 0.12);
+    }
+
+    .contact-item svg {
+      width: 28px;
+      height: 28px;
+      flex-shrink: 0;
+      color: var(--ruby-light);
+    }
+
+    .contact-item-text {
+      text-align: left;
+    }
+
+    .contact-item-label {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin-bottom: 0.15rem;
+    }
+
+    .contact-item-value {
+      font-size: 1.05rem;
+      font-weight: 700;
+    }
+
+    /* Divider */
+    .divider {
+      height: 1px;
+      background: var(--card-border);
+      margin: 1.5rem 0;
+    }
+
+    .note {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+      font-style: italic;
+    }
+
+    /* Brand footer */
+    .brand {
+      margin-top: 2.5rem;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      z-index: 1;
+      position: relative;
+      animation: fadeInUp 0.8s ease-out 0.2s both;
+    }
+
+    .brand a {
+      color: var(--ruby-light);
+      text-decoration: none;
+    }
+
+    .brand a:hover {
+      text-decoration: underline;
+    }
+
+    @media (max-width: 500px) {
+      .support-card {
+        padding: 2rem 1.5rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <a href="index.html" class="back-link">
+    <svg viewBox="0 0 24 24" fill="currentColor">
+      <path d="M20,11V13H8L13.5,18.5L12.08,19.92L4.16,12L12.08,4.08L13.5,5.5L8,11H20Z" />
+    </svg>
+    Back to Home
+  </a>
+
+  <div class="support-card">
+    <h1>Support</h1>
+    <p class="subtitle">Need help or have a question? We're here for you.</p>
+
+    <a href="mailto:rubyshiftgames@gmail.com" class="contact-item">
+      <svg viewBox="0 0 24 24" fill="currentColor">
+        <path
+          d="M20,8L12,13L4,8V6L12,11L20,6M20,4H4C2.89,4 2,4.89 2,6V18A2,2 0 0,0 4,20H20A2,2 0 0,0 22,18V6C22,4.89 21.1,4 20,4Z" />
+      </svg>
+      <div class="contact-item-text">
+        <div class="contact-item-label">E-mail</div>
+        <div class="contact-item-value">rubyshiftgames@gmail.com</div>
+      </div>
+    </a>
+
+    <div class="divider"></div>
+
+    <p class="note">We typically respond within 24 hours. Please include your device model and OS version when reporting
+      bugs.</p>
+  </div>
+
+  <p class="brand">&copy; 2026 <a href="index.html">Rubyshift Games</a></p>
+</body>
+
 </html>
