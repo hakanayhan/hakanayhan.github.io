@@ -158,3 +158,4 @@ smartadserver.com, 4972, RESELLER, 060d053dcf45cbf3
 adform.com, 3400, RESELLER, 9f5210a2f0999e32
 onlinemediasolutions.com, 23120, RESELLER, b3868b187e4b6402
 brightcom.com, 23120, RESELLER
+ogury.com, 065d4ff5-a269-44be-9634-9d4d7af2dfc3, RESELLER
