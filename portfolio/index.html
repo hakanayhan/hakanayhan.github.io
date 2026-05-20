@@ -1,0 +1,724 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hakan Ayhan - Gameplay & Backend Systems Engineer</title>
+<style>
+    :root {
+        --bg: #080a0f;
+        --panel: #10141c;
+        --panel-strong: #151b25;
+        --text: #f3f7fb;
+        --muted: #aab7c8;
+        --line: rgba(255, 255, 255, 0.12);
+        --cyan: #59e6df;
+        --rose: #ff6f91;
+        --gold: #d6c96f;
+        --green: #74d99f;
+        --shadow: 0 22px 60px rgba(0, 0, 0, 0.38);
+    }
+
+    * {
+        box-sizing: border-box;
+    }
+
+    html {
+        scroll-behavior: smooth;
+    }
+
+    body {
+        margin: 0;
+        font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        color: var(--text);
+        background:
+            linear-gradient(180deg, rgba(8, 10, 15, 0.14), var(--bg) 760px),
+            radial-gradient(circle at 20% 12%, rgba(89, 230, 223, 0.16), transparent 34rem),
+            radial-gradient(circle at 82% 6%, rgba(255, 111, 145, 0.14), transparent 30rem),
+            var(--bg);
+        line-height: 1.65;
+    }
+
+    a {
+        color: inherit;
+        text-decoration: none;
+    }
+
+    img {
+        display: block;
+        max-width: 100%;
+    }
+
+    .hero {
+        min-height: 82vh;
+        display: grid;
+        align-items: end;
+        position: relative;
+        overflow: hidden;
+        isolation: isolate;
+        padding: 32px 24px 76px;
+        border-bottom: 1px solid var(--line);
+    }
+
+    .hero::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        z-index: -2;
+        background-image: url("images/2.png");
+        background-size: cover;
+        background-position: center 36%;
+        filter: saturate(0.94) contrast(1.04);
+    }
+
+    .hero::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        z-index: -1;
+        background:
+            linear-gradient(90deg, rgba(8, 10, 15, 0.94) 0%, rgba(8, 10, 15, 0.72) 44%, rgba(8, 10, 15, 0.36) 100%),
+            linear-gradient(180deg, rgba(8, 10, 15, 0.12) 0%, rgba(8, 10, 15, 0.92) 100%);
+    }
+
+    .hero-inner,
+    main {
+        width: min(1120px, 100%);
+        margin: 0 auto;
+    }
+
+    .eyebrow {
+        margin: 0 0 14px;
+        color: var(--cyan);
+        font-size: 0.78rem;
+        font-weight: 800;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+    }
+
+    h1 {
+        max-width: 780px;
+        margin: 0;
+        font-size: clamp(3.2rem, 8vw, 7.6rem);
+        line-height: 0.9;
+        letter-spacing: 0;
+    }
+
+    .hero-copy {
+        max-width: 760px;
+        margin: 26px 0 0;
+        color: #d9e3ee;
+        font-size: clamp(1rem, 2vw, 1.25rem);
+    }
+
+    .hero-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        margin-top: 30px;
+    }
+
+    .button {
+        display: inline-flex;
+        align-items: center;
+        min-height: 44px;
+        padding: 0 18px;
+        border: 1px solid rgba(255, 255, 255, 0.18);
+        border-radius: 6px;
+        background: rgba(255, 255, 255, 0.08);
+        color: var(--text);
+        font-weight: 800;
+        font-size: 0.85rem;
+        letter-spacing: 0.04em;
+    }
+
+    .button.primary {
+        background: var(--cyan);
+        border-color: var(--cyan);
+        color: #051014;
+    }
+
+    main {
+        padding: 72px 24px 88px;
+    }
+
+    section {
+        margin-top: 76px;
+    }
+
+    section:first-of-type {
+        margin-top: 0;
+    }
+
+    .section-header {
+        display: grid;
+        grid-template-columns: minmax(0, 0.72fr) minmax(280px, 1fr);
+        gap: 42px;
+        align-items: end;
+        margin-bottom: 26px;
+        border-bottom: 1px solid var(--line);
+        padding-bottom: 18px;
+    }
+
+    h2 {
+        margin: 0;
+        font-size: clamp(1.65rem, 3vw, 2.6rem);
+        line-height: 1.05;
+        letter-spacing: 0;
+    }
+
+    .section-header p {
+        margin: 0;
+        color: var(--muted);
+    }
+
+    .capability-grid {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 14px;
+    }
+
+    .capability {
+        min-height: 196px;
+        padding: 22px;
+        background: var(--panel);
+        border: 1px solid var(--line);
+        border-radius: 8px;
+    }
+
+    .case-intro {
+        padding: 30px;
+        background: linear-gradient(135deg, rgba(89, 230, 223, 0.12), rgba(255, 111, 145, 0.08)), var(--panel);
+        border: 1px solid var(--line);
+        border-radius: 8px;
+    }
+
+    .case-intro p {
+        max-width: 900px;
+        margin: 0;
+        color: #d9e3ee;
+        font-size: 1.08rem;
+    }
+
+    .case-intro strong {
+        color: var(--text);
+    }
+
+    .project-spotlight {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) minmax(280px, 0.48fr);
+        gap: 24px;
+        align-items: start;
+        padding: 30px;
+        background: var(--panel);
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        box-shadow: var(--shadow);
+    }
+
+    .project-spotlight h2 {
+        margin: 0 0 14px;
+        border: 0;
+        padding: 0;
+    }
+
+    .project-spotlight h2::after {
+        display: none;
+    }
+
+    .project-spotlight p {
+        margin: 0;
+        color: #d9e3ee;
+    }
+
+    .project-links {
+        display: grid;
+        gap: 10px;
+    }
+
+    .project-links .button {
+        justify-content: center;
+        width: 100%;
+    }
+
+    .capability h3,
+    .case-copy h3 {
+        margin: 0 0 12px;
+        color: var(--text);
+        font-size: 1.08rem;
+    }
+
+    .tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin-top: 18px;
+    }
+
+    .tag {
+        display: inline-flex;
+        align-items: center;
+        min-height: 30px;
+        padding: 0 10px;
+        border-radius: 999px;
+        background: rgba(89, 230, 223, 0.1);
+        color: var(--cyan);
+        border: 1px solid rgba(89, 230, 223, 0.26);
+        font-size: 0.76rem;
+        font-weight: 800;
+        letter-spacing: 0.04em;
+    }
+
+    .case-list {
+        display: grid;
+        gap: 40px;
+    }
+
+    .case {
+        display: grid;
+        grid-template-columns: minmax(260px, 0.92fr) minmax(0, 1fr);
+        gap: 34px;
+        align-items: center;
+        padding: 26px;
+        background: var(--panel);
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        box-shadow: var(--shadow);
+    }
+
+    .case:nth-child(even) {
+        grid-template-columns: minmax(0, 1fr) minmax(260px, 0.92fr);
+    }
+
+    .case:nth-child(even) .phone-frame {
+        order: 2;
+    }
+
+    .phone-frame {
+        width: min(100%, 360px);
+        padding: 8px;
+        justify-self: center;
+        background: #020406;
+        border: 1px solid rgba(255, 255, 255, 0.14);
+        border-radius: 18px;
+        box-shadow: 0 20px 54px rgba(0, 0, 0, 0.46);
+    }
+
+    .phone-frame img {
+        width: 100%;
+        height: auto;
+        max-height: 760px;
+        object-fit: cover;
+        border-radius: 12px;
+    }
+
+    .phone-frame.wide-frame {
+        width: min(100%, 620px);
+    }
+
+    .phone-frame.wide-frame img {
+        max-height: none;
+        object-fit: contain;
+    }
+
+    .case-kicker {
+        margin: 0 0 10px;
+        color: var(--gold);
+        font-size: 0.76rem;
+        font-weight: 900;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+    }
+
+    .case-copy p {
+        margin: 0 0 14px;
+        color: #d9e3ee;
+    }
+
+    .proof-list {
+        display: grid;
+        gap: 12px;
+        margin: 18px 0 0;
+        padding: 0;
+        list-style: none;
+    }
+
+    .proof-list li {
+        position: relative;
+        padding-left: 22px;
+        color: var(--muted);
+    }
+
+    .proof-list li::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 0.72em;
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: var(--cyan);
+    }
+
+    .proof-list strong {
+        color: var(--text);
+    }
+
+    .education {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) minmax(280px, 0.45fr);
+        gap: 18px;
+        padding: 26px;
+        background: linear-gradient(135deg, var(--panel), var(--panel-strong));
+        border: 1px solid var(--line);
+        border-radius: 8px;
+    }
+
+    .education p {
+        margin: 0;
+        color: var(--muted);
+    }
+
+    .education strong {
+        color: var(--text);
+    }
+
+    @media (max-width: 900px) {
+        .capability-grid,
+        .section-header,
+        .case,
+        .case:nth-child(even),
+        .education,
+        .project-spotlight {
+            grid-template-columns: 1fr;
+        }
+
+        .case:nth-child(even) .phone-frame {
+            order: 0;
+        }
+    }
+
+    @media (max-width: 620px) {
+        .hero {
+            min-height: 78vh;
+            padding: 24px 18px 48px;
+        }
+
+        main {
+            padding: 42px 18px 64px;
+        }
+
+        .case {
+            padding: 16px;
+        }
+    }
+
+    @media print {
+        @page {
+            size: A4;
+            margin: 14mm;
+        }
+
+        * {
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        body {
+            background: var(--bg);
+        }
+
+        .hero {
+            min-height: 210mm;
+            page-break-after: always;
+        }
+
+        section,
+        .case,
+        .education {
+            break-inside: avoid;
+        }
+
+        .case {
+            box-shadow: none;
+        }
+    }
+</style>
+</head>
+<body>
+    <header class="hero">
+        <div class="hero-inner">
+            <p class="eyebrow">Gameplay & Backend Systems Engineer</p>
+            <h1>Hakan Ayhan</h1>
+            <p class="hero-copy">
+                Computer engineer focused on shipping scalable mobile gameplay systems, secure cloud integrations, anti-cheat controls, and server-driven LiveOps pipelines.
+            </p>
+            <div class="hero-actions" aria-label="Contact links">
+                <a class="button primary" href="mailto:hakanayhnn@gmail.com">hakanayhnn@gmail.com</a>
+                <a class="button" href="https://github.com/hakanayhan">GitHub</a>
+                <a class="button" href="https://www.linkedin.com/in/hakan-ayhan">LinkedIn</a>
+                <span class="button">Istanbul, Turkiye</span>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section>
+            <div class="section-header">
+                <h2>Engineering Profile</h2>
+                <p>
+                    A production-minded engineer who connects gameplay architecture, backend reliability, security, and performance into systems that can be operated after launch.
+                </p>
+            </div>
+            <div class="capability-grid">
+                <article class="capability">
+                    <h3>Gameplay Architecture</h3>
+                    <p>Modular managers, object-pooled spawners, procedural progression, and data-driven ability systems.</p>
+                    <div class="tags"><span class="tag">Unity 2D/3D</span><span class="tag">C#</span><span class="tag">SOLID</span></div>
+                </article>
+                <article class="capability">
+                    <h3>Backend & Security</h3>
+                    <p>Cloud identity, synchronized save state, request attestation, and integrity checks against unauthorized clients.</p>
+                    <div class="tags"><span class="tag">Firebase Auth</span><span class="tag">App Check</span><span class="tag">Realtime DB</span></div>
+                </article>
+                <article class="capability">
+                    <h3>LiveOps & Economy</h3>
+                    <p>Remote configuration, reward balancing, mediated ads, IAP flows, and compliance-oriented account controls.</p>
+                    <div class="tags"><span class="tag">Remote Config</span><span class="tag">AdMob</span><span class="tag">IAP</span></div>
+                </article>
+                <article class="capability">
+                    <h3>Performance</h3>
+                    <p>Memory-aware UI updates, runtime allocation control, frame-rate options, and device-friendly gameplay loops.</p>
+                    <div class="tags"><span class="tag">Object Pooling</span><span class="tag">GC Control</span><span class="tag">Git</span></div>
+                </article>
+            </div>
+        </section>
+
+        <section>
+            <div class="case-intro">
+                <p>
+                    I have worked on multiple projects, but this portfolio focuses on <strong>Megaloop</strong> because it best represents the kind of engineering I have been building recently: a shipped mobile game with real gameplay systems, cloud-backed progression, monetization, analytics, localization, security, and ongoing feature development.
+                </p>
+            </div>
+        </section>
+
+        <section>
+            <div class="project-spotlight">
+                <div>
+                    <p class="eyebrow">Featured Project</p>
+                    <h2>Megaloop</h2>
+                    <p>
+                        Megaloop is a published mobile survival game that I designed, engineered, optimized, integrated, and shipped independently. I handled the Unity gameplay architecture, Firebase backend systems, monetization setup, account/login flows, localization, analytics, store deployment, and ongoing feature development myself.
+                    </p>
+                </div>
+                <div class="project-links" aria-label="Megaloop external links">
+                    <a class="button primary" href="https://apps.apple.com/tr/app/megaioop/id6756177866">App Store</a>
+                    <a class="button" href="https://play.google.com/store/apps/details?id=com.rubyshift.megaloop">Google Play</a>
+                    <a class="button" href="https://www.youtube.com/shorts/m3W3ctONTzQ">Gameplay Video 1</a>
+                    <a class="button" href="https://youtube.com/shorts/4ijbphxhqGM">Gameplay Video 2</a>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <div class="section-header">
+                <h2>Megaloop Case Study</h2>
+                <p>
+                    Published mobile title built around real-time survival combat, run-based upgrade choices, secure initialization, mode-driven progression, scalable inventory systems, and configurable player-facing performance controls.
+                </p>
+            </div>
+
+            <div class="case-list">
+                <article class="case">
+                    <div class="phone-frame"><img src="images/8.png" width="1284" height="2778" loading="lazy" decoding="async" alt="Megaloop real-time combat screen"></div>
+                    <div class="case-copy">
+                        <p class="case-kicker">Moment-to-Moment Gameplay</p>
+                        <h3>Real-time survival combat with readable pressure</h3>
+                        <p>The core gameplay is built around surviving enemy waves, collecting resources, leveling during the run, and managing space while the pressure keeps scaling.</p>
+                        <ul class="proof-list">
+                            <li><strong>Combat readability:</strong> Enemy movement, player range, XP pickups, timers, currencies, and active abilities are surfaced without hiding the playfield.</li>
+                            <li><strong>Run pacing:</strong> Loop count, level progress, enemy count, and resource rewards give continuous feedback during each session.</li>
+                        </ul>
+                    </div>
+                </article>
+
+                <article class="case">
+                    <div class="phone-frame"><img src="images/9.png" width="1284" height="2778" loading="lazy" decoding="async" alt="Megaloop level up upgrade selection"></div>
+                    <div class="case-copy">
+                        <p class="case-kicker">Run Upgrade Draft</p>
+                        <h3>Level-up choices that shape each run</h3>
+                        <p>During gameplay, level-up moments present randomized upgrade choices across weapons, runes, and stat modifiers so each run develops differently.</p>
+                        <ul class="proof-list">
+                            <li><strong>Choice architecture:</strong> Upgrade cards support rarity, item type, current level, stat deltas, descriptions, banish, skip, and reroll actions.</li>
+                            <li><strong>Replay value:</strong> Different upgrade combinations push players toward new builds instead of repeating the same combat pattern.</li>
+                        </ul>
+                    </div>
+                </article>
+
+                <article class="case">
+                    <div class="phone-frame"><img src="images/11.png" width="1284" height="2778" loading="lazy" decoding="async" alt="Megaloop chest reward screen"></div>
+                    <div class="case-copy">
+                        <p class="case-kicker">Chest Rewards</p>
+                        <h3>Run-earned cores converted into randomized item rewards</h3>
+                        <p>Players earn cores during a run and spend them to open chests, creating an in-session reward loop that feeds directly back into build progression.</p>
+                        <ul class="proof-list">
+                            <li><strong>Core economy:</strong> Chest openings consume run-earned cores, turning moment-to-moment collection into a clear reward decision.</li>
+                            <li><strong>Randomized drops:</strong> Each chest rolls a random item, giving rewards uncertainty and supporting repeated play.</li>
+                            <li><strong>Rarity structure:</strong> Item rarity gives the reward table progression value and makes stronger drops feel distinct.</li>
+                        </ul>
+                    </div>
+                </article>
+
+                <article class="case">
+                    <div class="phone-frame"><img src="images/10.png" width="1284" height="2778" loading="lazy" decoding="async" alt="Megaloop late-run combat build"></div>
+                    <div class="case-copy">
+                        <p class="case-kicker">Build Synergy</p>
+                        <h3>Late-run escalation with layered weapons and items</h3>
+                        <p>As the run progresses, the player build becomes a layered combat system where weapons, runes, items, active skills, damage numbers, enemy waves, and pickups all interact in real time.</p>
+                        <ul class="proof-list">
+                            <li><strong>Scalable combat:</strong> Higher loops support denser enemy patterns, stronger visual effects, and multiple active systems without losing the run state.</li>
+                            <li><strong>Nexus active skills:</strong> Each Nexus character has a unique active skill with its own power profile, cooldown, and tactical use case.</li>
+                            <li><strong>Inventory feedback:</strong> The lower HUD shows equipped weapons, rune levels, items, and chest rewards so build growth remains visible.</li>
+                        </ul>
+                    </div>
+                </article>
+
+                <article class="case">
+                    <div class="phone-frame"><img src="images/2.png" width="1284" height="2778" loading="lazy" decoding="async" alt="Megaloop battle screen"></div>
+                    <div class="case-copy">
+                        <p class="case-kicker">Main Hub & Retention</p>
+                        <h3>Mobile survival structured around repeatable sessions</h3>
+                        <p>The main hub connects the gameplay loop to long-term progression, daily goals, rewards, economy, and mode selection.</p>
+                        <ul class="proof-list">
+                            <li><strong>Main menu systems:</strong> The hub connects Battle, Shop, Path rewards, Nexus, daily quests, currencies, and settings into one player flow.</li>
+                            <li><strong>Retention structure:</strong> Daily quests and path rewards give players clear short-term goals beyond a single run.</li>
+                        </ul>
+                    </div>
+                </article>
+
+                <article class="case">
+                    <div class="phone-frame"><img src="images/3.png" width="1284" height="2778" loading="lazy" decoding="async" alt="Megaloop universe selection"></div>
+                    <div class="case-copy">
+                        <p class="case-kicker">Universe & Mode Selection</p>
+                        <h3>Different universes and run modes from shared systems</h3>
+                        <p>The mode layer lets players move between different universes and choose between Path and Loop experiences while keeping the core gameplay architecture reusable.</p>
+                        <ul class="proof-list">
+                            <li><strong>Universe variety:</strong> Each universe can define its own environment, enemy pressure, rewards, and progression context.</li>
+                            <li><strong>Path and Loop modes:</strong> Loop mode supports Normal and Hard options, giving the same content structure multiple difficulty profiles.</li>
+                        </ul>
+                    </div>
+                </article>
+
+                <article class="case">
+                    <div class="phone-frame"><img src="images/4.png" width="1284" height="2778" loading="lazy" decoding="async" alt="Megaloop meta upgrade screen"></div>
+                    <div class="case-copy">
+                        <p class="case-kicker">Meta Upgrade Systems</p>
+                        <h3>Weapons, runes, items, and Nexus variety</h3>
+                        <p>The meta layer gives players multiple growth paths through weapons, runes, items, and Nexus choices, supporting different builds across repeated runs.</p>
+                        <ul class="proof-list">
+                            <li><strong>Run variety:</strong> Upgrade categories are designed to make each run feel different instead of repeating one fixed power path.</li>
+                            <li><strong>Data-driven scaling:</strong> Upgrade values resolve through structured definitions that can be tuned without rewriting gameplay logic.</li>
+                        </ul>
+                    </div>
+                </article>
+
+                <article class="case">
+                    <div class="phone-frame"><img src="images/5.png" width="1284" height="2778" loading="lazy" decoding="async" alt="Megaloop evolution tree"></div>
+                    <div class="case-copy">
+                        <p class="case-kicker">Evolve Tree</p>
+                        <h3>Attack, defense, and utility progression paths</h3>
+                        <p>The evolve system organizes permanent progression into a node-based tree where players can invest in attack, defense, and utility upgrades.</p>
+                        <ul class="proof-list">
+                            <li><strong>Build direction:</strong> Attack, defense, and utility branches support different player priorities and play styles.</li>
+                            <li><strong>Tree validation:</strong> Node data enforces prerequisite chains and prevents invalid unlock order.</li>
+                        </ul>
+                    </div>
+                </article>
+
+                <article class="case">
+                    <div class="phone-frame"><img src="images/6.png" width="1284" height="2778" loading="lazy" decoding="async" alt="Megaloop economy screen"></div>
+                    <div class="case-copy">
+                        <p class="case-kicker">Shop & Monetization</p>
+                        <h3>IAP and ad systems integrated into the economy</h3>
+                        <p>The shop supports a live mobile economy with in-app purchases and ad-based reward flows built into the same entitlement and reward structure.</p>
+                        <ul class="proof-list">
+                            <li><strong>IAP implementation:</strong> Purchase flows are connected to player rewards and persistent account state.</li>
+                            <li><strong>Ad monetization:</strong> Rewarded ad systems are integrated and operating alongside the shop economy.</li>
+                        </ul>
+                    </div>
+                </article>
+
+                <article class="case">
+                    <div class="phone-frame"><img src="images/1.png" width="1284" height="2778" loading="lazy" decoding="async" alt="Megaloop loading screen"></div>
+                    <div class="case-copy">
+                        <p class="case-kicker">Secure Initialization</p>
+                        <h3>Firebase-backed login, integrity, and save resolution</h3>
+                        <p>The loading pipeline prepares the game by connecting Firebase services, validating the device environment, and resolving the safest player state before the session starts.</p>
+                        <ul class="proof-list">
+                            <li><strong>Integrity checks:</strong> Firebase connection, App Check, and root detection help block unsafe or unauthorized runtime conditions.</li>
+                            <li><strong>Session protection:</strong> The system handles same-account logins from different devices and validates the active cloud user state.</li>
+                            <li><strong>Save resolution:</strong> Local and cloud records are compared so the newer valid player data becomes the active session state.</li>
+                            <li><strong>Remote tuning:</strong> Each login pulls Remote Config values for economy, balance, and LiveOps parameters without requiring a client update.</li>
+                        </ul>
+                    </div>
+                </article>
+
+                <article class="case">
+                    <div class="phone-frame"><img src="images/7.png" width="1284" height="2778" loading="lazy" decoding="async" alt="Megaloop options and performance settings"></div>
+                    <div class="case-copy">
+                        <p class="case-kicker">Options, Localization & Accounts</p>
+                        <h3>Player settings, performance controls, and account binding</h3>
+                        <p>The options layer combines localization, device-friendly performance settings, platform identity, and account management in one player-facing screen.</p>
+                        <ul class="proof-list">
+                            <li><strong>10-language localization:</strong> A centralized language system supports 10 languages and keeps adding a new language mostly to data entry rather than UI rewiring.</li>
+                            <li><strong>Performance options:</strong> Effect mode and FPS controls help players tune the game for different hardware profiles.</li>
+                            <li><strong>Account systems:</strong> Game Center, Play Games, Apple Login, Google Login, and Anonymous Login support flexible account binding.</li>
+                            <li><strong>Platform compliance:</strong> Account deletion support was added for store policy requirements and user data control.</li>
+                        </ul>
+                    </div>
+                </article>
+
+                <article class="case">
+                    <div class="phone-frame"><img src="images/12.png" width="1284" height="2778" loading="lazy" decoding="async" alt="Megaloop equipment system prototype"></div>
+                    <div class="case-copy">
+                        <p class="case-kicker">In Development Prototype</p>
+                        <h3>Equipment system planned as the next progression layer</h3>
+                        <p>This prototype screen shows the equipment system currently being developed for Megaloop, extending the game beyond run upgrades into deeper long-term build customization.</p>
+                        <ul class="proof-list">
+                            <li><strong>Equipment slots:</strong> The design introduces distinct gear slots around the Nexus, alongside main weapon and active skill selections.</li>
+                            <li><strong>Inventory foundation:</strong> A scrollable equipment inventory is being prepared for item collection, comparison, and loadout management.</li>
+                            <li><strong>Progression roadmap:</strong> The feature is intentionally presented as prototype work, showing active development direction without overstating release readiness.</li>
+                        </ul>
+                    </div>
+                </article>
+
+                <article class="case">
+                    <div class="phone-frame wide-frame"><img src="images/13.png" width="2198" height="956" loading="lazy" decoding="async" alt="Firebase Analytics dashboard for Megaloop"></div>
+                    <div class="case-copy">
+                        <p class="case-kicker">Firebase Analytics</p>
+                        <h3>Live visibility into players, versions, retention, and engagement</h3>
+                        <p>Firebase Analytics is connected to Megaloop to track release health, active users, engagement, retention, app versions, and country-level activity after launch. Between April 1 and May 19, the game reached 589 active users with 2h 17m average engagement time per active user.</p>
+                        <ul class="proof-list">
+                            <li><strong>Release monitoring:</strong> App version charts help compare player activity across live builds and verify rollout behavior.</li>
+                            <li><strong>Engagement signals:</strong> 589 active users and 2h 17m average engagement time show measurable session depth in the observed launch window.</li>
+                            <li><strong>Retention tracking:</strong> D1 retention is 32.4% and D7 retention is 9.3%, giving a concrete baseline for focused improvements to onboarding, rewards, progression pacing, and LiveOps loops.</li>
+                            <li><strong>Operational dashboard:</strong> Analytics turns the published game into a measurable product rather than a black-box release.</li>
+                        </ul>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <section>
+            <div class="section-header">
+                <h2>Academic Background</h2>
+                <p>Formal computer engineering foundation supporting production work in software architecture, mobile security, cloud systems, and optimization.</p>
+            </div>
+            <div class="education">
+                <p><strong>Computer Engineering</strong><br>Istanbul Beykent University</p>
+                <p><strong>Core focus:</strong> game developing, software engineering patterns, mobile and cloud security, performance optimization.</p>
+            </div>
+        </section>
+    </main>
+</body>
+</html>
